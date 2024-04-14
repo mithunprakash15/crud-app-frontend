@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
+import './assets/global.css';
+import { store } from './redux/store';
+import ListEmployees from './pages/listEmployees';
+import { ListEmployeeLayout, ViewProfileLayout, ViewEmployeeLayout, AddEmployeeLayout, ChangePasswordLayout } from './layouts/Layout';
+import Login from './pages/loginPage';
 
 function App() {
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (!token) {
+  //     navigate('/login', { replace: true });
+  //   }
+  // }, [navigate]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ReduxProvider store={store}>
+      <Router> 
+        <Routes>
+          <Route path="/list" element={<ListEmployeeLayout />} />
+          <Route path="/:id" element={<ViewEmployeeLayout />} />
+          <Route path="/add" element={<AddEmployeeLayout />} />
+          <Route path="/view" element={<ViewProfileLayout />} />
+          <Route path="/change" element={<ChangePasswordLayout />} />
+          <Route path="/" element={<Login />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+        <ToastContainer position="top-right" /> 
+      </Router>
+    </ReduxProvider>
   );
 }
 
