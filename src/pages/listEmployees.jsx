@@ -9,15 +9,16 @@ const ListEmployees = () => {
   const dispatch = useDispatch(); 
   const EmployeeData = useSelector((state) => state.ListEmployee.response); 
   const updateData = useSelector((state) => state.DeleteEmployee); 
+  const updateAdd = useSelector((state) => state.AddEmployee); 
 
   const jwtToken = localStorage.getItem('jwt');
-console.log(updateData)
   useEffect(() => {
  
     dispatch(listEmployee());
-  }, [updateData]); 
 
-  
+  }, [updateData, updateAdd]); 
+
+
   useEffect(() => {
  
     dispatch(listEmployee());

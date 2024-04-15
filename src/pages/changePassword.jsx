@@ -33,10 +33,7 @@ function ChangePasswordPage() {
     }),
     onSubmit: values => {
       dispatch(changePassword(values));
-      if(updateData?.isSuccess){
-        navigate('/list') 
-      
-    }
+      navigate(-1) 
     },
   });
 

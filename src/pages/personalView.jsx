@@ -68,18 +68,18 @@ console.log(decodedToken)
   });
 
   useEffect(() => {
-    if (EmployeeData) {
-      formik.setValues({
-        firstName: EmployeeData.firstName || "",
-        lastName: EmployeeData.lastName || "",
-        dateOfBirth: EmployeeData.dob || "",
-        address: EmployeeData.address || "",
-        designation: EmployeeData.designation || "",
-        dateOfJoining: EmployeeData.doj || "",
-        empId: EmployeeData.empId || "",
-        email: EmployeeData.email || "",
-      });
-    }
+    // if (EmployeeData) {
+    //   formik.setValues({
+    //     firstName: EmployeeData.firstName || "",
+    //     lastName: EmployeeData.lastName || "",
+    //     dateOfBirth: EmployeeData.dob || "",
+    //     address: EmployeeData.address || "",
+    //     designation: EmployeeData.designation || "",
+    //     dateOfJoining: EmployeeData.doj || "",
+    //     empId: EmployeeData.empId || "",
+    //     email: EmployeeData.email || "",
+    //   });
+    // }
   }, [EmployeeData]);
 
   console.log("values",formik.values)
