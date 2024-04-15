@@ -56,14 +56,14 @@ const DeleteEmployee = createSlice({
         state.response = payload;
         state.errorMessage = "";
         state.isSuccess = true;
-        SUCCESS(payload);
+        SUCCESS(payload.message);
       });
       builder.addCase(deleteEmployee.rejected, (state, action) => {
         const { payload } = action;
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.errorMessage = payload.data ? payload : payload;
+        state.errorMessage = payload.data ? payload.message : payload.message;
         FAILED(state.errorMessage);
       });
     },

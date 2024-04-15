@@ -66,14 +66,17 @@ const AuthLogin = createSlice({
         if (payload.token) {
           localStorage.setItem("jwt", payload.token);
         }
-        SUCCESS(payload);
+        console.log("payload",payload)
+        SUCCESS(payload.message);
       });
       builder.addCase(authLogin.rejected, (state, action) => {
         const { payload } = action;
         state.isLoading = false;
         state.isSuccess = false;
         state.isError = true;
-        state.errorMessage = payload.data ? payload : payload;
+        console.log("payload",payload)
+
+        state.errorMessage = payload.data ? payload.message : payload.message;
         FAILED(state.errorMessage);
       });
     },

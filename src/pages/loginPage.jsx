@@ -22,20 +22,18 @@ const Login = () => {
   };
 
   const data = useSelector((state) => state.AuthLogin);
+  const jwtToken = localStorage.getItem('jwt');
+  
   console.log("data", data);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authLogin(formData))
-      .then((data) => {
-        // navigate('/');
-      })
-      .catch((error) => {
-        console.log("Login error:", error);
-      });
+      
   };
 
   useEffect(() => {
-    if (data.isSuccess) {
+    if (data.isSuccess && jwtToken) {
+      console.log(jwtToken)
       navigate("/list");
     }
   }, [data]);

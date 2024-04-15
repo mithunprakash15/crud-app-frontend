@@ -23,12 +23,14 @@ function App() {
     <ReduxProvider store={store}>
       <Router> 
         <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
           <Route path="/list" element={<ListEmployeeLayout />} />
           <Route path="/:id" element={<ViewEmployeeLayout />} />
           <Route path="/add" element={<AddEmployeeLayout />} />
           <Route path="/view" element={<ViewProfileLayout />} />
           <Route path="/change" element={<ChangePasswordLayout />} />
-          <Route path="/" element={<Login />} />
+
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <ToastContainer position="top-right" /> 
