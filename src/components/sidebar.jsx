@@ -19,7 +19,7 @@ const Sidebar = () => {
     width: 'full',
     padding: '10px',
     borderRadius: '10px',
-    marginTop: '20px', 
+   
     textAlign: 'center', 
     cursor: 'pointer', 
   };

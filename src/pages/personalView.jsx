@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useParams } from 'react-router-dom';
-import {addEmployee} from "../redux/reducers/addEmployee";
+
 import {viewEmployee} from "../redux/reducers/viewEmployee";
 import {updateEmployee} from "../redux/reducers/updateEmployee";
 import { jwtDecode } from "jwt-decode";
@@ -33,7 +32,6 @@ const ViewEmployee = () => {
 
 const jwtToken = localStorage.getItem('jwt');
 const decodedToken = jwtDecode(jwtToken);
-console.log(decodedToken)
 
   useEffect(() => {
  
@@ -82,7 +80,7 @@ console.log(decodedToken)
     // }
   }, [EmployeeData]);
 
-  console.log("values",formik.values)
+
   const handleEditClick = () => {
     setEditMode(true);
   };

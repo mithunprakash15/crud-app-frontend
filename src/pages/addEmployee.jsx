@@ -1,10 +1,20 @@
 import React from "react";
-import { Card, CardContent, Grid, TextField, Typography, Button } from "@mui/material";
-import { useDispatch } from "react-redux"; 
-import { useNavigate } from 'react-router-dom';
+import {
+  Card,
+  CardContent,
+  Grid,
+  TextField,
+  Typography,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel,
+} from "@mui/material";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import {addEmployee} from "../redux/reducers/addEmployee";
+import { addEmployee } from "../redux/reducers/addEmployee";
 
 const validationSchema = yup.object({
   firstName: yup.string().required("First Name is required"),
@@ -15,11 +25,14 @@ const validationSchema = yup.object({
   designation: yup.string(),
   dateOfJoining: yup.date(),
   empId: yup.string().required("Employee ID is required"),
-  email: yup.string().email("Invalid email address").required("Email is required"),
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
 });
 
 const AddEmployee = () => {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -37,17 +50,16 @@ const AddEmployee = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-
       console.log(values);
-      dispatch(addEmployee(values))
-      navigate(-1)      
+      dispatch(addEmployee(values));
+      navigate(-1);
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
       <Grid container justifyContent="center" alignItems="center" spacing={4}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={8}>
           <Card sx={{ padding: 2, margin: 5 }}>
             <Typography
               variant="h6"
@@ -69,8 +81,13 @@ const AddEmployee = () => {
                         value={formik.values.firstName}
                         onChange={formik.handleChange}
                         required
-                        error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                        helperText={formik.touched.firstName && formik.errors.firstName}
+                        error={
+                          formik.touched.firstName &&
+                          Boolean(formik.errors.firstName)
+                        }
+                        helperText={
+                          formik.touched.firstName && formik.errors.firstName
+                        }
                       />
                     </Grid>
                     <Grid item xs={6}>
@@ -81,7 +98,6 @@ const AddEmployee = () => {
                         name="lastName"
                         value={formik.values.lastName}
                         onChange={formik.handleChange}
-                      
                       />
                     </Grid>
                   </Grid>
@@ -99,7 +115,7 @@ const AddEmployee = () => {
                     onChange={formik.handleChange}
                   />
                 </Grid>
-               
+
                 <Grid item xs={12}>
                   <TextField
                     label="Address"
@@ -124,18 +140,25 @@ const AddEmployee = () => {
             <CardContent>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <TextField
+                  <Select
                     label="Designation"
                     fullWidth
                     sx={{ margin: 2 }}
                     name="designation"
+                    placeholder="Designation"
                     value={formik.values.designation}
                     onChange={formik.handleChange}
-                  />
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value="manager">Manager</MenuItem>
+                    <MenuItem value="employee">Employee</MenuItem>
+                  </Select>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    label="Date of Joining"
+                    // label="Date of Joining"
                     type="date"
                     fullWidth
                     InputLabelProps={{ shrink: true }}
@@ -175,7 +198,14 @@ const AddEmployee = () => {
         </Grid>
       </Grid>
       <Grid container justifyContent="center">
-        <Button style={{ background: '#105369' }} type="submit" variant="contained" color="primary">Submit</Button>
+        <Button
+          style={{ background: "#105369" }}
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
+          Submit
+        </Button>
       </Grid>
     </form>
   );
